@@ -44,6 +44,21 @@ function Gradient() {
     setPicker(color1);
     setcopy(false);
   };
+  const handlecolor = (e) => {
+    const colors = document.querySelectorAll("#color");
+    colors.forEach((e) => e.classList.remove("active"));
+    colors[0].classList.add("active");
+    const split = e.target.getAttribute("style").split(")");
+    const colortwo = split[1].split("%,")[1] + ")";
+    const colorone = split[0].split("deg,")[1] + ")";
+    setcolor2(colortwo);
+    setcolor1(colorone);
+    console.log(color1);
+    setPicker(colorone);
+    setDeg(90);
+    setType("linear");
+    setcopy(false);
+  };
   const Seccolor = (e) => {
     const picker = document.querySelector(".picker");
     const colors = document.querySelectorAll("#color");
@@ -191,14 +206,22 @@ function Gradient() {
             {"background: " + background}
           </SyntaxHighlighter>
         </div>
-        <div className="w-72 h-10 flex">
+        <div className="w-72 h-12 flex">
           <div
-            className="w-8 mr-2 rounded h-full "
+            className="w-11 mr-4 rounded h-full active "
+            onClick={handlecolor}
             style={{
-              background: "linear-gradient(90deg,#FFD3A5   0%,#FD6585 100%)",
+              background: "linear-gradient(90deg,#03a9f4 0%,#43e1b0 100%)",
             }}></div>
           <div
-            className="w-8 mr-2 rounded h-full "
+            className="w-11 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#FFD3A5 0%,#FD6585 100%)",
+            }}></div>
+          <div
+            className="w-11 mr-4 rounded h-full "
+            onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#0F3443    0%,#34E89E 100%)",
             }}></div>
