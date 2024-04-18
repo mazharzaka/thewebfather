@@ -45,9 +45,12 @@ function Gradient() {
     setcopy(false);
   };
   const handlecolor = (e) => {
+    const picker = document.querySelector(".picker");
     const colors = document.querySelectorAll("#color");
     colors.forEach((e) => e.classList.remove("active"));
     colors[0].classList.add("active");
+    picker.classList.remove("two");
+    picker.classList.add("one");
     const split = e.target.getAttribute("style").split(")");
     const colortwo = split[1].split("%,")[1] + ")";
     const colorone = split[0].split("deg,")[1] + ")";
@@ -55,8 +58,8 @@ function Gradient() {
     setcolor1(colorone);
     console.log(color1);
     setPicker(colorone);
-    setDeg(90);
-    setType("linear");
+    // setDeg(90);
+    // setType("linear");
     setcopy(false);
   };
   const Seccolor = (e) => {
@@ -206,24 +209,78 @@ function Gradient() {
             {"background: " + background}
           </SyntaxHighlighter>
         </div>
-        <div className="w-72 h-12 flex">
+        <div className="w-80 h-12 flex flex-wrap">
           <div
-            className="w-11 mr-4 rounded h-full active "
+            className="w-11 mb-2 mr-4 rounded h-full  "
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#03a9f4 0%,#43e1b0 100%)",
             }}></div>
           <div
-            className="w-11 mr-4 rounded h-full "
+            className="w-11 mb-2 mr-4 rounded h-full  "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#FF512F  0%,#DD2476 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#FFD3A5 0%,#FD6585 100%)",
             }}></div>
           <div
-            className="w-11 mr-4 rounded h-full "
+            className="w-11 mb-2 mr-4 rounded h-full "
             onClick={handlecolor}
             style={{
-              background: "linear-gradient(90deg,#0F3443    0%,#34E89E 100%)",
+              background: "linear-gradient(90deg,#0F3443 0%,#34E89E 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#283c86 0%,#45a247 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#c0392b 0%,#8e44ad 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#8f71ff 0%,#8bffff 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#000046 0%,#1CB5E0 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#009245    0%,#FCEE21 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#fc8a15 0%,#fff6a2 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#662D8C  0%,#ED1E79 100%)",
+            }}></div>
+          <div
+            className="w-11 mb-2 mr-4 rounded h-full "
+            onClick={handlecolor}
+            style={{
+              background: "linear-gradient(90deg,#614385   0%,#516395 100%)",
             }}></div>
         </div>
       </div>
