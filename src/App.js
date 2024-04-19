@@ -1,5 +1,6 @@
 import "./App.css";
 import Generator from "./components/generator";
+
 import Header from "./components/header";
 import Home from "./components/home";
 
