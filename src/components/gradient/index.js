@@ -203,85 +203,87 @@ function Gradient() {
               Code
             </div>
             <div className="text-blue-300 transition-all hover:text-blue-600 text-xl">
-              <CopyToClipboard text={background} onCopy={() => setcopy(true)}>
+              <CopyToClipboard
+                text={"background :" + background + ";"}
+                onCopy={() => setcopy(true)}>
                 {copy ? <LuCopyCheck className="text-blue-100" /> : <LuCopy />}
               </CopyToClipboard>
             </div>
           </div>
           <SyntaxHighlighter language="css" style={materialDark}>
-            {"background :" + background}
+            {"background :" + background + ";"}
           </SyntaxHighlighter>
         </div>
-        <div className="w-80 h-12 flex flex-wrap">
+        <div className="w-80  flex flex-wrap">
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2 "
+            className="w-11 mb-2 mr-4 rounded h-12 border-2 "
             id="color-active"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#03a9f4 0%,#43e1b0 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2 "
+            className="w-11 mb-2 mr-4 rounded h-12 border-2 "
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#FF512F  0%,#DD2476 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#FFD3A5 0%,#FD6585 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#0F3443 0%,#34E89E 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#283c86 0%,#45a247 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#c0392b 0%,#8e44ad 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#8f71ff 0%,#8bffff 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#000046 0%,#1CB5E0 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#009245    0%,#FCEE21 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#fc8a15 0%,#fff6a2 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#662D8C  0%,#ED1E79 100%)",
             }}></div>
           <div
-            className="w-11 mb-2 mr-4 rounded h-full border-2"
+            className="w-11 mb-2 mr-4 rounded h-12 border-2"
             onClick={handlecolor}
             style={{
               background: "linear-gradient(90deg,#614385   0%,#516395 100%)",

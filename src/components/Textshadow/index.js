@@ -8,7 +8,7 @@ import {materialDark} from "react-syntax-highlighter/dist/esm/styles/prism";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 
 function TextShadow() {
-  const [picker, setPicker] = useState("#03a9f4");
+  const [picker, setPicker] = useState("#000000");
   const [copy, setcopy] = useState(false);
   const [color, setColor] = useColor(picker);
   const [horizontal, setHorizontal] = useState("3");
@@ -148,13 +148,15 @@ function TextShadow() {
               Code
             </div>
             <div className="text-blue-300 transition-all hover:text-blue-600 text-xl">
-              <CopyToClipboard text={text} onCopy={() => setcopy(true)}>
+              <CopyToClipboard
+                text={"text-shadow: " + text + ";" + "\ncolor: " + color1 + ";"}
+                onCopy={() => setcopy(true)}>
                 {copy ? <LuCopyCheck className="text-blue-100" /> : <LuCopy />}
               </CopyToClipboard>
             </div>
           </div>
           <SyntaxHighlighter language="css" style={materialDark}>
-            {"text-shadow: " + text + "\ncolor: " + color1}
+            {"text-shadow: " + text + ";" + "\ncolor: " + color1 + ";"}
           </SyntaxHighlighter>
         </div>
       </div>
