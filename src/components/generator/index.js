@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import {Link} from "react-router-dom";
 import Gradient from "../gradient";
 import TextShadow from "../Textshadow";
+import Palette from "../palette";
 
 function Generator() {
   const btn = (e) => {
@@ -24,6 +25,13 @@ function Generator() {
           className="cursor-pointer transition-colors  delay-200 h-10 p-2 mt-5 mr-1 rounded text-white flex items-center justify-center bg-black-400">
           Box Shadow
         </div>{" "}
+        <Link to="/palette">
+          <div
+            onClick={btn}
+            className="cursor-pointer transition-colors  delay-200 h-10 p-2 mt-5 mr-1 rounded text-white flex items-center justify-center bg-black-400">
+            Palette
+          </div>
+        </Link>{" "}
         <Link to="/">
           <div
             id="active-btn"
@@ -43,6 +51,7 @@ function Generator() {
       <Routes>
         <Route path="/" element={<Gradient />} exact />
         <Route path="/textshadow" element={<TextShadow />} exact />
+        <Route path="/palette" element={<Palette />} exact />
       </Routes>
     </div>
   );
