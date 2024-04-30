@@ -11,6 +11,7 @@ module.exports = {
         500: "#9bcefa",
         600: "#b1d8fb",
       },
+
       black: {
         /** CSS DARK THEME MIXED SURFACE COLORS */
         100: "#191f25",

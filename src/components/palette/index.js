@@ -1,9 +1,32 @@
 import axios from "axios";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import {FaCode} from "react-icons/fa";
+import {LuCopy, LuCopyCheck} from "react-icons/lu";
 
+import {materialDark} from "react-syntax-highlighter/dist/esm/styles/prism";
+import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 function Palette() {
   const [data, setData] = useState(null);
   const [color, setcolor] = useState("#03a9f4");
+  const [copy, setcopy] = useState(false);
+  const timerId = useRef(null);
+
+  const handleCopy = (e) => {
+    //Creating a timeout
+    const value = e.target.innerHTML;
+
+    e.target.innerHTML = "Copied " + value;
+
+    timerId.current = setTimeout(() => {
+      e.target.innerHTML = value;
+      // console.log(e.target.value);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timerId.current);
+    };
+  };
   const Generat = () => {
     let value = document.querySelector("#colorinput").value;
     if (!value.includes("#")) {
@@ -53,6 +76,7 @@ function Palette() {
       <div className="w-full  flex items-center flex-col">
         <div className="h-80 flex mt-4 mb-4">
           <div
+            onClick={handleCopy}
             className="w-16 rounded-[30px] [writing-mode:vertical-lr]   mr-2  flex font-bold text-xl  justify-center items-center"
             style={{background: `${color}`}}>
             {color}
@@ -60,39 +84,42 @@ function Palette() {
           {data === null ? (
             <>
               <div
-                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#0573A5]"
-                style={{}}>
+                onClick={handleCopy}
+                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#0573A5]">
                 #0573A5
               </div>
               <div
-                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#0696D8]"
-                style={{}}>
+                onClick={handleCopy}
+                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#0696D8]">
                 #0696D8
               </div>
               <div
-                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#16B3FA]"
-                style={{}}>
+                onClick={handleCopy}
+                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#16B3FA]">
                 #16B3FA
               </div>
               <div
-                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#47C4FC]"
-                style={{}}>
+                onClick={handleCopy}
+                className="w-16 rounded-[30px] [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center mr-2 bg-[#47C4FC]">
                 #47C4FC
               </div>
             </>
           ) : (
             data.colors.map((e) => (
-              <div
-                className="w-16 rounded-[30px]  mr-2 [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center"
-                style={{
-                  background: `${e.hex.value}`,
-                  color:
-                    e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 > 186
-                      ? "black"
-                      : "white",
-                }}>
-                {e.hex.value}
-              </div>
+              <CopyToClipboard text={e.hex.value}>
+                <div
+                  className="w-16 rounded-[30px] cursor-pointer mr-2 [writing-mode:vertical-lr] font-bold text-xl  flex  justify-center items-center"
+                  onClick={handleCopy}
+                  style={{
+                    background: `${e.hex.value}`,
+                    color:
+                      e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 > 186
+                        ? "black"
+                        : "white",
+                  }}>
+                  {e.hex.value}
+                </div>
+              </CopyToClipboard>
             ))
           )}
         </div>
@@ -115,6 +142,68 @@ function Palette() {
             ))
           )}
         </div>
+        {data !== null && (
+          <div className="w-96  mt-3 mb-2 bg-[#2F2F2F]">
+            <div className=" flex justify-between items-center">
+              <div className="text-white flex ">
+                <span className="text-blue-500 mt-1 text-xl ml-1 mr-1">
+                  <FaCode />
+                </span>{" "}
+                Code
+              </div>
+              <div className="text-blue-300 transition-all mr-1 hover:text-blue-600 text-xl">
+                <CopyToClipboard
+                  text={
+                    "--color-primary-100 :" +
+                    color +
+                    ";" +
+                    " \n--color-primary-200 :" +
+                    data?.colors[0].hex.value +
+                    ";" +
+                    " \n--color-primary-300 :" +
+                    data?.colors[1].hex.value +
+                    ";" +
+                    " \n--color-primary-400 :" +
+                    data?.colors[2].hex.value +
+                    ";" +
+                    " \n--color-primary-500 :" +
+                    data?.colors[3].hex.value +
+                    ";" +
+                    " \n--color-primary-600 :" +
+                    data?.colors[4].hex.value +
+                    ";"
+                  }
+                  onCopy={() => setcopy(true)}>
+                  {copy ? (
+                    <LuCopyCheck className="text-blue-100" />
+                  ) : (
+                    <LuCopy />
+                  )}
+                </CopyToClipboard>
+              </div>
+            </div>
+            <SyntaxHighlighter language="css" style={materialDark}>
+              {"--color-primary-100 :" +
+                color +
+                ";" +
+                " \n--color-primary-200 :" +
+                data?.colors[0].hex.value +
+                ";" +
+                " \n--color-primary-300 :" +
+                data?.colors[1].hex.value +
+                ";" +
+                " \n--color-primary-400 :" +
+                data?.colors[2].hex.value +
+                ";" +
+                " \n--color-primary-500 :" +
+                data?.colors[3].hex.value +
+                ";" +
+                " \n--color-primary-600 :" +
+                data?.colors[4].hex.value +
+                ";"}
+            </SyntaxHighlighter>
+          </div>
+        )}
       </div>
     </div>
   );
