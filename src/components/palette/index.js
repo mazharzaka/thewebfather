@@ -10,11 +10,13 @@ function Palette() {
   const [data, setData] = useState(null);
   const [color, setcolor] = useState("#03a9f4");
   const [copy, setcopy] = useState(false);
+  const [type, settype] = useState("Css");
   const timerId = useRef(null);
 
   const handleCopy = (e) => {
     //Creating a timeout
     const value = e.target.innerHTML;
+    setcopy(false);
 
     e.target.innerHTML = "Copied " + value;
 
@@ -28,6 +30,7 @@ function Palette() {
     };
   };
   const Generat = () => {
+    setcopy(false);
     let value = document.querySelector("#colorinput").value;
     if (!value.includes("#")) {
       value = "#" + value;
@@ -57,6 +60,12 @@ function Palette() {
           console.log(error);
         });
     }
+  };
+  const handleType = (e) => {
+    setcopy(false);
+    document.getElementById("type").removeAttribute("id");
+    e.target.setAttribute("id", "type");
+    settype(e.target.innerHTML);
   };
   return (
     <div className="w-full">
@@ -151,27 +160,82 @@ function Palette() {
                 </span>{" "}
                 Code
               </div>
-              <div className="text-blue-300 transition-all mr-1 hover:text-blue-600 text-xl">
+              <div className="text-blue-300 flex transition-all mr-1 hover:text-blue-600 text-xl">
+                <div
+                  className="text-white p-1 mr-1 text-xs "
+                  onClick={handleType}
+                  id="type">
+                  Css
+                </div>
+                <div
+                  className="text-white mr-1 p-1 text-xs"
+                  onClick={handleType}>
+                  Scss
+                </div>
+                <div
+                  className="text-white mr-1 p-1 text-xs"
+                  onClick={handleType}>
+                  Tcss
+                </div>
                 <CopyToClipboard
                   text={
-                    "--color-primary-100 :" +
-                    color +
-                    ";" +
-                    " \n--color-primary-200 :" +
-                    data?.colors[0].hex.value +
-                    ";" +
-                    " \n--color-primary-300 :" +
-                    data?.colors[1].hex.value +
-                    ";" +
-                    " \n--color-primary-400 :" +
-                    data?.colors[2].hex.value +
-                    ";" +
-                    " \n--color-primary-500 :" +
-                    data?.colors[3].hex.value +
-                    ";" +
-                    " \n--color-primary-600 :" +
-                    data?.colors[4].hex.value +
-                    ";"
+                    type === "Css"
+                      ? "--color-primary-100 :" +
+                        color +
+                        ";" +
+                        " \n--color-primary-200 :" +
+                        data?.colors[0].hex.value +
+                        ";" +
+                        " \n--color-primary-300 :" +
+                        data?.colors[1].hex.value +
+                        ";" +
+                        " \n--color-primary-400 :" +
+                        data?.colors[2].hex.value +
+                        ";" +
+                        " \n--color-primary-500 :" +
+                        data?.colors[3].hex.value +
+                        ";" +
+                        " \n--color-primary-600 :" +
+                        data?.colors[4].hex.value +
+                        ";"
+                      : type === "Scss"
+                      ? "$color-primary-100 :" +
+                        color +
+                        ";" +
+                        " \n$color-primary-200 :" +
+                        data?.colors[0].hex.value +
+                        ";" +
+                        " \n$color-primary-300 :" +
+                        data?.colors[1].hex.value +
+                        ";" +
+                        " \n$color-primary-400 :" +
+                        data?.colors[2].hex.value +
+                        ";" +
+                        " \n$color-primary-500 :" +
+                        data?.colors[3].hex.value +
+                        ";" +
+                        " \n$color-primary-600 :" +
+                        data?.colors[4].hex.value +
+                        ";"
+                      : "primary {" +
+                        "\n100 :" +
+                        color +
+                        ";" +
+                        " \n200 :" +
+                        data?.colors[0].hex.value +
+                        ";" +
+                        " \n300 :" +
+                        +data?.colors[1].hex.value +
+                        ";" +
+                        " \n400 :" +
+                        data?.colors[2].hex.value +
+                        ";" +
+                        " \n500 :" +
+                        data?.colors[3].hex.value +
+                        ";" +
+                        " \n600 :" +
+                        data?.colors[4].hex.value +
+                        "; \n}"
                   }
                   onCopy={() => setcopy(true)}>
                   {copy ? (
@@ -183,24 +247,63 @@ function Palette() {
               </div>
             </div>
             <SyntaxHighlighter language="css" style={materialDark}>
-              {"--color-primary-100 :" +
-                color +
-                ";" +
-                " \n--color-primary-200 :" +
-                data?.colors[0].hex.value +
-                ";" +
-                " \n--color-primary-300 :" +
-                data?.colors[1].hex.value +
-                ";" +
-                " \n--color-primary-400 :" +
-                data?.colors[2].hex.value +
-                ";" +
-                " \n--color-primary-500 :" +
-                data?.colors[3].hex.value +
-                ";" +
-                " \n--color-primary-600 :" +
-                data?.colors[4].hex.value +
-                ";"}
+              {type === "Css"
+                ? "--color-primary-100 :" +
+                  color +
+                  ";" +
+                  " \n--color-primary-200 :" +
+                  data?.colors[0].hex.value +
+                  ";" +
+                  " \n--color-primary-300 :" +
+                  data?.colors[1].hex.value +
+                  ";" +
+                  " \n--color-primary-400 :" +
+                  data?.colors[2].hex.value +
+                  ";" +
+                  " \n--color-primary-500 :" +
+                  data?.colors[3].hex.value +
+                  ";" +
+                  " \n--color-primary-600 :" +
+                  data?.colors[4].hex.value +
+                  ";"
+                : type === "Scss"
+                ? "$color-primary-100 :" +
+                  color +
+                  ";" +
+                  " \n$color-primary-200 :" +
+                  data?.colors[0].hex.value +
+                  ";" +
+                  " \n$color-primary-300 :" +
+                  data?.colors[1].hex.value +
+                  ";" +
+                  " \n$color-primary-400 :" +
+                  data?.colors[2].hex.value +
+                  ";" +
+                  " \n$color-primary-500 :" +
+                  data?.colors[3].hex.value +
+                  ";" +
+                  " \n$color-primary-600 :" +
+                  data?.colors[4].hex.value +
+                  ";"
+                : "primary {" +
+                  "\n100 :" +
+                  color +
+                  ";" +
+                  " \n200 :" +
+                  data?.colors[0].hex.value +
+                  ";" +
+                  " \n300 :" +
+                  data?.colors[1].hex.value +
+                  ";" +
+                  " \n400 :" +
+                  data?.colors[2].hex.value +
+                  ";" +
+                  " \n500 :" +
+                  data?.colors[3].hex.value +
+                  ";" +
+                  " \n600 :" +
+                  data?.colors[4].hex.value +
+                  "; \n}"}
             </SyntaxHighlighter>
           </div>
         )}
