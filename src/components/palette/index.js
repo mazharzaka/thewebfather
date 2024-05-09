@@ -6,6 +6,7 @@ import {LuCopy, LuCopyCheck} from "react-icons/lu";
 
 import {materialDark} from "react-syntax-highlighter/dist/esm/styles/prism";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
+import Model from "../Model";
 function Palette() {
   const [data, setData] = useState(null);
   const [color, setcolor] = useState("#03a9f4");
@@ -17,9 +18,9 @@ function Palette() {
     //Creating a timeout
     const value = e.target.innerHTML;
     setcopy(false);
-
+   if (!value.includes("Copied")){
     e.target.innerHTML = "Copied " + value;
-
+  
     timerId.current = setTimeout(() => {
       e.target.innerHTML = value;
       // console.log(e.target.value);
@@ -27,7 +28,7 @@ function Palette() {
 
     return () => {
       clearTimeout(timerId.current);
-    };
+    }; }
   };
   const Generat = () => {
     setcopy(false);
@@ -122,7 +123,7 @@ function Palette() {
                   style={{
                     background: `${e.hex.value}`,
                     color:
-                      e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 > 186
+                      (e.rgb.r * 0.299) + (e.rgb.b * 0.587) + e.rgb.g * 0.114 > 180
                         ? "black"
                         : "white",
                   }}>
@@ -151,6 +152,7 @@ function Palette() {
             ))
           )}
         </div>
+        <Model/>
         {data !== null && (
           <div className="w-96  mt-3 mb-2 bg-[#2F2F2F]">
             <div className=" flex justify-between items-center">

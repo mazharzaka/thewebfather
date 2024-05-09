@@ -17,7 +17,12 @@
   border-bottom-width: 2px !important;
   border-color: #b1d8fb;
 }
-.App-header {
+#triangle{
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+#triangle1{
+clip-path: polygon(50% 100%, 0 0, 100% 0);
+}.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
