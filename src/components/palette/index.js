@@ -18,17 +18,18 @@ function Palette() {
     //Creating a timeout
     const value = e.target.innerHTML;
     setcopy(false);
-   if (!value.includes("Copied")){
-    e.target.innerHTML = "Copied " + value;
-  
-    timerId.current = setTimeout(() => {
-      e.target.innerHTML = value;
-      // console.log(e.target.value);
-    }, 2000);
+    if (!value.includes("Copied")) {
+      e.target.innerHTML = "Copied " + value;
 
-    return () => {
-      clearTimeout(timerId.current);
-    }; }
+      timerId.current = setTimeout(() => {
+        e.target.innerHTML = value;
+        // console.log(e.target.value);
+      }, 2000);
+
+      return () => {
+        clearTimeout(timerId.current);
+      };
+    }
   };
   const Generat = () => {
     setcopy(false);
@@ -123,7 +124,7 @@ function Palette() {
                   style={{
                     background: `${e.hex.value}`,
                     color:
-                      (e.rgb.r * 0.299) + (e.rgb.b * 0.587) + e.rgb.g * 0.114 > 180
+                      e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 > 160
                         ? "black"
                         : "white",
                   }}>
@@ -152,7 +153,7 @@ function Palette() {
             ))
           )}
         </div>
-        <Model/>
+        <Model colors={data?.colors} main={color} />
         {data !== null && (
           <div className="w-96  mt-3 mb-2 bg-[#2F2F2F]">
             <div className=" flex justify-between items-center">

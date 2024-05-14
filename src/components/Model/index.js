@@ -1,10 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {BsFillPaletteFill, BsPalette} from "react-icons/bs";
 import {IoMdSync} from "react-icons/io";
 import {MdOutlineChangeHistory} from "react-icons/md";
 import {RiSignpostFill} from "react-icons/ri";
 
-function Model() {
+function Model({colors, main}) {
+  const [light, setLight] = useState([]);
+  const [dark, setDark] = useState([]);
+  useEffect(() => {
+    const r = parseInt(main?.slice(1, 3), 16);
+    const g = parseInt(main?.slice(3, 5), 16);
+    const b = parseInt(main?.slice(5, 7), 16);
+
+    let Light = colors
+      ? colors.filter(
+          (e) => e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 > 100
+        )
+      : [];
+
+    let Dark = colors
+      ? colors.filter(
+          (e) => e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 <= 100
+        )
+      : [];
+    // console.log(dark);
+    setLight(Light);
+    setDark(Dark);
+    r * 0.299 + b * 0.587 + g * 0.114 <= 100
+      ? setDark([...Dark, main])
+      : setLight([...Light, main]);
+  }, [colors, main]);
   return (
     <div className="w-[32rem] rounded-md bg-black-300">
       <div className="w-full flex mt-3  justify-between items-center">
@@ -57,21 +82,21 @@ function Model() {
               Dark Color Test
             </div>
           </div>
-          <div className="w-full flex mt-2 items-center  justify-center">
-            <BsFillPaletteFill className="text-3xl ml-3 text-[#0573A5] " />
-            <BsPalette className="text-3xl ml-3 text-[#0573A5] " />
-            <BsFillPaletteFill className="text-xl ml-3 text-[#0573A5] " />
-            <BsPalette className="text-xl ml-3 text-[#0573A5] " />
-            <BsFillPaletteFill className="text-sm ml-3 text-[#0573A5] " />
-            <BsPalette className="text-sm ml-3 text-[#0573A5] " />
+          <div className="w-full flex mt-2 items-center text-[#0573A5]   justify-center">
+            <BsFillPaletteFill className="text-3xl ml-3" />
+            <BsPalette className="text-3xl ml-3 " />
+            <BsFillPaletteFill className="text-xl ml-3 " />
+            <BsPalette className="text-xl ml-3 " />
+            <BsFillPaletteFill className="text-sm ml-3 " />
+            <BsPalette className="text-sm ml-3 " />
           </div>
-          <div className="w-full flex mt-2 items-center justify-center">
-            <BsFillPaletteFill className="text-3xl ml-3 text-[#0696D8] " />
-            <BsPalette className="text-3xl ml-3 text-[#0696D8] " />
-            <BsFillPaletteFill className="text-xl ml-3 text-[#0696D8] " />
-            <BsPalette className="text-xl ml-3 text-[#0696D8] " />
-            <BsFillPaletteFill className="text-sm ml-3 text-[#0696D8] " />
-            <BsPalette className="text-sm ml-3 text-[#0696D8] " />
+          <div className="w-full flex mt-2 items-center text-[#0696D8] justify-center">
+            <BsFillPaletteFill className="text-3xl ml-3  " />
+            <BsPalette className="text-3xl ml-3 " />
+            <BsFillPaletteFill className="text-xl ml-3 " />
+            <BsPalette className="text-xl ml-3 " />
+            <BsFillPaletteFill className="text-sm ml-3 " />
+            <BsPalette className="text-sm ml-3 " />
           </div>
           <div className="w-full flex mt-2 items-center justify-center">
             <div className="w-10 cursor-pointer flex hover:rotate-90 items-center text-2xl justify-center h-8 cursor-point  rounded-xl  hover:bg-[#0573A5] transition-all   bg-[#0696D8] text-white ">
@@ -86,21 +111,21 @@ function Model() {
               Light Color Test
             </div>
           </div>
-          <div className="w-full flex mt-2 items-center  justify-center">
-            <BsFillPaletteFill className="text-3xl ml-3 text-[#47C4FC] " />
-            <BsPalette className="text-3xl ml-3 text-[#47C4FC] " />
-            <BsFillPaletteFill className="text-xl ml-3 text-[#47C4FC] " />
-            <BsPalette className="text-xl ml-3 text-[#47C4FC] " />
-            <BsFillPaletteFill className="text-sm ml-3 text-[#47C4FC] " />
-            <BsPalette className="text-sm ml-3 text-[#47C4FC] " />
+          <div className="w-full flex mt-2 items-center text-[#47C4FC]   justify-center">
+            <BsFillPaletteFill className="text-3xl ml-3  " />
+            <BsPalette className="text-3xl ml-3  " />
+            <BsFillPaletteFill className="text-xl ml-3  " />
+            <BsPalette className="text-xl ml-3  " />
+            <BsFillPaletteFill className="text-sm ml-3  " />
+            <BsPalette className="text-sm ml-3  " />
           </div>
-          <div className="w-full flex mt-2 items-center justify-center">
-            <BsFillPaletteFill className="text-3xl ml-3 text-[#03a9f4] " />
-            <BsPalette className="text-3xl ml-3 text-[#03a9f4] " />
-            <BsFillPaletteFill className="text-xl ml-3 text-[#03a9f4] " />
-            <BsPalette className="text-xl ml-3 text-[#03a9f4] " />
-            <BsFillPaletteFill className="text-sm ml-3 text-[#03a9f4] " />
-            <BsPalette className="text-sm ml-3 text-[#03a9f4] " />
+          <div className="w-full flex mt-2 text-[#03a9f4] items-center justify-center">
+            <BsFillPaletteFill className="text-3xl ml-3  " />
+            <BsPalette className="text-3xl ml-3  " />
+            <BsFillPaletteFill className="text-xl ml-3  " />
+            <BsPalette className="text-xl ml-3  " />
+            <BsFillPaletteFill className="text-sm ml-3  " />
+            <BsPalette className="text-sm ml-3  " />
           </div>
           <div className="w-full flex mt-2 items-center justify-center">
             <div className="w-10 cursor-pointer flex hover:rotate-90 items-center text-2xl justify-center h-8 cursor-point  rounded-xl  hover:bg-[#03a9f4] transition-all   bg-[#47C4FC]  ">
