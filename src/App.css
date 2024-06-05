@@ -17,6 +17,9 @@
   border-bottom-width: 2px !important;
   border-color: #b1d8fb;
 }
+.bg-clip-text{
+  background-clip: text !important;
+}
 #triangle{
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }

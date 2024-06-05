@@ -124,7 +124,7 @@ function Palette() {
                   style={{
                     background: `${e.hex.value}`,
                     color:
-                      e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 > 160
+                      e.rgb.r * 0.299 + e.rgb.b * 0.587 + e.rgb.g * 0.114 > 130
                         ? "black"
                         : "white",
                   }}>
