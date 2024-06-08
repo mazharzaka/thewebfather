@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import Gradient from "../gradient";
 import TextShadow from "../Textshadow";
 import Palette from "../palette";
+import Contrast from "../Contrast";
 
 function Generator() {
   const btn = (e) => {
@@ -40,6 +41,13 @@ function Generator() {
             Gradient
           </div>
         </Link>
+        <Link to="/ContrastChecker">
+          <div
+            onClick={btn}
+            className="cursor-pointer transition-colors  delay-200 h-10 p-2 mt-5 mr-1 rounded text-white flex items-center justify-center bg-black-300">
+            Contrast Checker
+          </div>
+        </Link>{" "}
         <Link to="/textshadow">
           <div
             onClick={btn}
@@ -50,6 +58,7 @@ function Generator() {
       </div>
       <Routes>
         <Route path="/" element={<Gradient />} exact />
+        <Route path="/ContrastChecker" element={<Contrast />} exact />
         <Route path="/textshadow" element={<TextShadow />} exact />
         <Route path="/palette" element={<Palette />} exact />
       </Routes>
